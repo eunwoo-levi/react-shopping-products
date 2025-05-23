@@ -1,4 +1,4 @@
-import { n as newStyled, j as jsxRuntimeExports, r as reactExports, P as ProductsWithCartContext, c as css, a as reactDomExports, b as ProductCardSkeleton } from "./index-DRaXS-vL.js";
+import { n as newStyled, j as jsxRuntimeExports, r as reactExports, P as ProductsWithCartContext, a as reactDomExports, b as ProductCardSkeleton } from "./index-Dq4dsAL2.js";
 const ProductListWrapper = newStyled.div`
   display: flex;
   flex-direction: column;
@@ -67,18 +67,25 @@ const CustomButton$1 = newStyled.button`
   align-items: center;
   gap: 5px;
   padding: 0 8px;
-  background-color: #000;
-  color: #fff;
   border-radius: 4px;
   cursor: pointer;
+
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #000;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 `;
 const ButtonIcon = newStyled.img`
   width: 15px;
   height: 15px;
 `;
 const ButtonTitle = newStyled.span``;
-function CustomButton({ ...rest }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(CustomButton$1, { ...rest, children: [
+function CustomButton({ css: cssProp, ...rest }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(CustomButton$1, { css: cssProp, ...rest, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(ButtonIcon, { src: "./addCartIcon.svg", alt: "button icon" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(ButtonTitle, { children: "담기" })
   ] });
@@ -251,11 +258,6 @@ function ProductCard({ product, setError }) {
   const handleProductCart = () => {
     toggleCartSelection(product.id);
   };
-  const buttonStyle = product.isCart ? css`
-        background-color: #fff;
-        color: #000;
-        border: 1px solid #000;
-      ` : css``;
   const cartProductId = product.cartProductId ?? -1;
   const cartProductQuantity = product.cartProductQuantity || 1;
   const isProductSoldOut = product.cartProductQuantity !== void 0 && product.cartProductQuantity >= product.quantity;
@@ -284,14 +286,14 @@ function ProductCard({ product, setError }) {
         product.quantity
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(ButtonSection, { children: !isCartSelected ? /* @__PURE__ */ jsxRuntimeExports.jsx(CustomButton, { onClick: handleProductCart, css: buttonStyle }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ jsxRuntimeExports.jsx(ButtonSection, { children: !isCartSelected ? /* @__PURE__ */ jsxRuntimeExports.jsx(CustomButton, { onClick: handleProductCart, disabled: isProductSoldOut }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
       CartQuantitySelector,
       {
         productId: product.id,
         cartProductId,
         cartProductQuantity,
         setError,
-        isProductSoldOut
+        isProductSoldOut: product.quantity === 0
       }
     ) })
   ] });
