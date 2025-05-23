@@ -5146,6 +5146,9 @@ const handlers = [
       });
     }
     return HttpResponse.json({ content: sorted });
+  }),
+  http.get(`${BASE_URL}/cart-items*`, () => {
+    return HttpResponse.json({ content: [] });
   })
 ];
 const worker = setupWorker(...handlers);

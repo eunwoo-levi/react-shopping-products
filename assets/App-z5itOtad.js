@@ -1,4 +1,4 @@
-import { n as newStyled, j as jsxRuntimeExports, r as reactExports, P as ProductsWithCartContext, c as css, a as reactDomExports, b as ProductCardSkeleton } from "./index-DunZwqE4.js";
+import { n as newStyled, j as jsxRuntimeExports, r as reactExports, P as ProductsWithCartContext, c as css, a as reactDomExports, b as ProductCardSkeleton } from "./index-Cmj9EqZu.js";
 const ProductListWrapper = newStyled.div`
   display: flex;
   flex-direction: column;
