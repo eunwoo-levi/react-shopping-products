@@ -9373,8 +9373,8 @@ const updateCartProduct = (cartProductId, cartProductQuantity) => {
     quantity: cartProductQuantity
   });
 };
-const deleteCartProduct = (productId) => {
-  return httpClient.delete(`/cart-items/${productId}`);
+const deleteCartProduct = (cartProductId) => {
+  return httpClient.delete(`/cart-items/${cartProductId}`);
 };
 const ProductsWithCartContext = reactExports.createContext(void 0);
 const ProductsWithCartProvider = ({ children }) => {
@@ -9481,13 +9481,13 @@ const ProductsWithCartProvider = ({ children }) => {
     }
   );
 };
-const App = reactExports.lazy(() => __vitePreload(() => import("./App-z5itOtad.js"), true ? [] : void 0));
+const App = reactExports.lazy(() => __vitePreload(() => import("./App-Bwu_p2lj.js"), true ? [] : void 0));
 function LazyApp() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsWithCartProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) });
 }
 async function enableMocking() {
   const isLocalhost = location.hostname === "localhost";
-  const { worker } = await __vitePreload(() => import("./browser-CFYMvSNi.js"), true ? [] : void 0);
+  const { worker } = await __vitePreload(() => import("./browser-DPUvGpoH.js"), true ? [] : void 0);
   return worker.start({
     serviceWorker: {
       url: isLocalhost ? "/mockServiceWorker.js" : "/react-shopping-products/mockServiceWorker.js"

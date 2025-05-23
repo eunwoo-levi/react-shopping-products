@@ -5126,6 +5126,7 @@ const products = [
     quantity: 7
   }
 ];
+const cartProducts = [];
 const BASE_URL = "http://techcourse-lv2-alb-974870821.ap-northeast-2.elb.amazonaws.com";
 const handlers = [
   http.get(`${BASE_URL}/products`, ({ request }) => {
@@ -5148,7 +5149,56 @@ const handlers = [
     return HttpResponse.json({ content: sorted });
   }),
   http.get(`${BASE_URL}/cart-items*`, () => {
-    return HttpResponse.json({ content: [] });
+    return HttpResponse.json({
+      content: cartProducts
+    });
+  }),
+  http.post(`${BASE_URL}/cart-items*`, async ({ request }) => {
+    const body = await request.json();
+    const { productId } = body;
+    const product = products.find((p) => p.id === productId);
+    if (!product) {
+      return new HttpResponse("Product not found", { status: 404 });
+    }
+    const existing = cartProducts.find((item) => item.product.id === productId);
+    if (existing) {
+      return HttpResponse.json(existing);
+    }
+    const newCartProduct = {
+      id: Number(Date.now()),
+      quantity: 1,
+      product
+    };
+    cartProducts.push(newCartProduct);
+    return HttpResponse.json({
+      message: "Cart product added successfully"
+    });
+  }),
+  http.patch(`${BASE_URL}/cart-items/:id`, async ({ params, request }) => {
+    const cartProductId = Number(params.id);
+    const { quantity } = await request.json();
+    console.log("params", params);
+    cartProducts.forEach((item) => {
+      if (item.id === cartProductId) {
+        console.log("item", item);
+        console.log("cartProductId", cartProductId);
+        item.quantity = quantity;
+        console.log("updateditem", item);
+      }
+    });
+    return HttpResponse.json({ message: "Cart product updated", productId: cartProductId });
+  }),
+  http.delete(`${BASE_URL}/cart-items/:id`, ({ params }) => {
+    const cartProductId = Number(params.id);
+    const index = cartProducts.findIndex((item) => item.id === cartProductId);
+    if (index === -1) {
+      return new HttpResponse("Cart product not found", { status: 404 });
+    }
+    cartProducts.splice(index, 1);
+    return HttpResponse.json({
+      message: "Cart product deleted successfully",
+      cartProducts
+    });
   })
 ];
 const worker = setupWorker(...handlers);
