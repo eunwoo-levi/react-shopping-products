@@ -1,4 +1,4 @@
-import { n as newStyled, j as jsxRuntimeExports, r as reactExports, P as ProductsWithCartContext, a as reactDomExports, b as ProductCardSkeleton } from "./index-Dq4dsAL2.js";
+import { n as newStyled, j as jsxRuntimeExports, r as reactExports, P as ProductsWithCartContext, a as reactDomExports, b as ProductCardSkeleton } from "./index-s3O8yEu_.js";
 const ProductListWrapper = newStyled.div`
   display: flex;
   flex-direction: column;
@@ -175,6 +175,10 @@ const CartQuantitySelectorButton = newStyled.button`
   :hover {
     background-color: #f0f0f0;
   }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;
 const CartQuantityNumber = newStyled.div`
   font-size: 12px;
@@ -293,7 +297,7 @@ function ProductCard({ product, setError }) {
         cartProductId,
         cartProductQuantity,
         setError,
-        isProductSoldOut: product.quantity === 0
+        isProductSoldOut
       }
     ) })
   ] });

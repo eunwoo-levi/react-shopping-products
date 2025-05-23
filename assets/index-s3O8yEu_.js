@@ -9481,7 +9481,7 @@ const ProductsWithCartProvider = ({ children }) => {
     }
   );
 };
-const App = reactExports.lazy(() => __vitePreload(() => import("./App-BIcPSgJ8.js"), true ? [] : void 0));
+const App = reactExports.lazy(() => __vitePreload(() => import("./App-CkEioHWR.js"), true ? [] : void 0));
 function LazyApp() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsWithCartProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) });
 }
