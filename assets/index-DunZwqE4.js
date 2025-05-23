@@ -9481,13 +9481,19 @@ const ProductsWithCartProvider = ({ children }) => {
     }
   );
 };
-const App = reactExports.lazy(() => __vitePreload(() => import("./App-Cz5vEgd7.js"), true ? [] : void 0));
+const App = reactExports.lazy(() => __vitePreload(() => import("./App-D_m1l2S8.js"), true ? [] : void 0));
 function LazyApp() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsWithCartProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) });
 }
 async function enableMocking() {
+  const isLocalhost = location.hostname === "localhost";
   const { worker } = await __vitePreload(() => import("./browser-DflglxS3.js"), true ? [] : void 0);
-  return worker.start({ onUnhandledRequest: "bypass" });
+  return worker.start({
+    serviceWorker: {
+      url: isLocalhost ? "/mockServiceWorker.js" : "/react-shopping-products/mockServiceWorker.js"
+    },
+    onUnhandledRequest: "bypass"
+  });
 }
 enableMocking().then(() => {
   client.createRoot(document.getElementById("root")).render(
